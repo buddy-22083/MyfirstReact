@@ -7,9 +7,6 @@ import { Zap, Heart, Gamepad2, Skull, ArrowRight, RefreshCcw, Activity, Award } 
 // ==========================================
 const callBackendsAPI = async (formData) => {
   try {
-    // -----------------------------------------------------
-    // 🔗 ตอนนี้เชื่อมต่อกับ: RENDER Backend
-    // -----------------------------------------------------
     const apiUrl = 'https://myfirstbackend-b55x.onrender.com/api/predict'; 
     
     const response = await fetch(apiUrl,  {
@@ -23,7 +20,6 @@ const callBackendsAPI = async (formData) => {
 
   } catch (error) {
     console.error("Connection Error:", error);
-    // รอเวลาหลอกๆ 1.5 วิ ให้ดูเหมือนประมวลผล (User Experience)
     await new Promise(resolve => setTimeout(resolve, 1500)); 
     return {
       winner: "เกิดข้อผิดพลาด",
@@ -42,7 +38,6 @@ const App = () => {
   const [formData, setFormData] = useState({ like: '', skill: '', hobby: '', dream: '', hate: '' });
   const [result, setResult] = useState(null);
 
-  // ⚠️ ตรวจสอบว่าไฟล์ public/download.png มีอยู่จริงนะครับ
   const logoUrl = process.env.PUBLIC_URL + "/download.png"; 
 
   const handleSubmit = async (e) => {
@@ -133,36 +128,13 @@ const App = () => {
                 <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full -mr-16 -mt-16 opacity-50"></div>
                 
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-xs font-black uppercase tracking-wider mb-4 border border-blue-100">
-                  <Award className="w-4 h-4" /> สาขาที่แนะนำอันดับ 1
+                  <Award className="w-4 h-4" /> สาขาที่แนะนำ
                 </div>
                 
                 <h2 className="text-3xl font-black mb-2 text-slate-900 leading-tight">{result.winner}</h2>
                 <p className="text-slate-500 text-sm mb-6 font-medium italic">"เส้นทางสู่ความสำเร็จที่ออกแบบมาเพื่อคุณ"</p>
-                
-                {/* Course List Logic */}
-                <div className="bg-slate-50/80 rounded-2xl p-4 text-left border border-slate-100 space-y-2">
-                    <p className="text-xs text-slate-400 font-bold uppercase tracking-wide mb-2 pl-1">วิชาที่สอดคล้องกับคุณ:</p>
-                    {result.courses && result.courses.map((course, idx) => (
-                        <div key={idx} className="flex items-center gap-3 text-sm text-slate-700 bg-white p-2 rounded-xl border border-slate-100 shadow-sm">
-                            <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                            {course.name}
-                        </div>
-                    ))}
-                </div>
               </div>
-
-              {/* Runner Up */}
-              {result.runner_up !== "-" && (
-                  <div className="bg-white/60 border border-white rounded-2xl p-4 flex items-center justify-between shadow-sm">
-                    <div>
-                        <div className="text-xs text-slate-400 font-bold uppercase">อันดับ 2</div>
-                        <div className="font-bold text-slate-700">{result.runner_up}</div>
-                    </div>
-                    <div className="text-2xl opacity-50 grayscale">🥈</div>
-                  </div>
-              )}
-
-              <button onClick={resetApp} className="w-full py-4 text-slate-400 hover:text-blue-600 font-bold transition-all flex items-center justify-center gap-2 group">
+          <button onClick={resetApp} className="w-full py-4 text-slate-400 hover:text-blue-600 font-bold transition-all flex items-center justify-center gap-2 group">
                 <RefreshCcw className="w-4 h-4 group-hover:rotate-180 transition-transform duration-700" /> 
                 เริ่มใหม่อีกครั้ง
               </button>
