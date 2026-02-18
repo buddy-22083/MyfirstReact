@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import { Sparkles, Zap, Heart, Gamepad2, Skull, ArrowRight, RefreshCcw, Activity, Award } from 'lucide-react';
-
-// ==========================================
 // 🧠 API Service
 // ==========================================
 const callBackendsAPI = async (formData) => {
