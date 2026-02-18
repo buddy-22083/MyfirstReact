@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
+// ✅ เอา Sparkles ออกแล้ว เพื่อไม่ให้ Vercel แจ้ง Error ตอน Build
+import { Zap, Heart, Gamepad2, Skull, ArrowRight, RefreshCcw, Activity, Award } from 'lucide-react';
+
+// ==========================================
 // 🧠 API Service
 // ==========================================
 const callBackendsAPI = async (formData) => {
   try {
-    // ❌ ของเดิมผิด: '...onrender.com;' (มี ; ใน string และขาด /api/predict)
-    // ✅ แก้ไข: เอา ; ออก และเติม endpoint ให้ครบ
+    // -----------------------------------------------------
+    // 🔗 ตอนนี้เชื่อมต่อกับ: RENDER Backend
+    // -----------------------------------------------------
     const apiUrl = 'https://myfirstbackend-b55x.onrender.com/api/predict'; 
     
     const response = await fetch(apiUrl,  {
@@ -37,7 +42,7 @@ const App = () => {
   const [formData, setFormData] = useState({ like: '', skill: '', hobby: '', dream: '', hate: '' });
   const [result, setResult] = useState(null);
 
-  // ⚠️ อย่าลืมเอาไฟล์รูป download.png ไปใส่ในโฟลเดอร์ public นะครับ
+  // ⚠️ ตรวจสอบว่าไฟล์ public/download.png มีอยู่จริงนะครับ
   const logoUrl = process.env.PUBLIC_URL + "/download.png"; 
 
   const handleSubmit = async (e) => {
